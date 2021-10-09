@@ -1,0 +1,12 @@
+﻿@model CasinoMVC.Core.Crawler.CrawlDiagnostics
+<h3>Crawl results:</h3>
+<p>Got @Model.AddedItemsCount items</p>
+@if(!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+<div class="alert alert-light" role="alert">
+    @Model.ErrorMessage
+</div>
+}
+<h3>Log</h3>
+@Model.Log
+<a class="btn btn-primary" asp-action="Index">Back</a>

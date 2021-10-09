@@ -1,0 +1,41 @@
+﻿<script type="text/javascript">
+    function Add(button) {
+        var thisRow = $(button).closest("tr");
+
+        var tBody = document.getElementById('tblChosenItems').getElementsByTagName('tbody')[0];
+        var row = tBody.insertRow(-1);
+
+        for (var i = 0; i < thisRow[0].cells.length - 2; i++) {
+            var cell = $(row.insertCell(-1));
+            cell.html(thisRow[0].cells[i].innerHTML);
+        }
+
+        var cell = $(row.insertCell(-1));
+        var input = $("<input />");
+        input.attr("data-val", "true");
+        input.attr("data-val-required", "The Double field is required.");
+        input.attr("name", "Chest.ItemIds[" + thisRow[0].cells[0].innerHTML + "]");
+        input.attr("id", "Chest_ItemIds_" + thisRow[0].cells[0].innerHTML + "_");
+        input.attr("type", "number");
+        input.attr("value", thisRow[0].cells[thisRow[0].cells.length - 2].children[0].value);
+        input.attr("data-val-number", "The field must be a number.");
+        cell.append(input);
+
+        cell = $(row.insertCell(-1));
+        var btnRemove = $("<button><strong>-</strong></button>");
+        btnRemove.attr("class", "btn btn-danger pull-right");
+        btnRemove.attr("onclick", "Remove(this);");
+        btnRemove.val("Remove");
+        cell.append(btnRemove);
+    };
+    function Remove(button) {
+        var row = $(button).closest("tr");
+        var table = $("#tblChosenItems")[0];
+        table.deleteRow(row[0].rowIndex);
+    };
+
+    $(document).ready(function () {
+        console.log("SAD");
+    });
+
+</script>

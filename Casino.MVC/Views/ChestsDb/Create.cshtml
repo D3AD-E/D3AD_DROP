@@ -1,0 +1,87 @@
+﻿@model CasinoMVC.Models.AdminChestModel
+@{
+    ViewData["Title"] = "Admin add chest";
+}
+<section class="clean-block features">
+    <div class="container">
+        <form asp-action="Create" asp-controller="ChestsDb">
+            <div class="row">
+                <div class="col-md-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Chest.Name" class="control-label"></label>
+                        <input asp-for="Chest.Name" class="form-control" />
+                        <span asp-validation-for="Chest.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Chest.Price" class="control-label"></label>
+                        <input asp-for="Chest.Price" class="form-control" />
+                        <span asp-validation-for="Chest.Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Chest.ImageUrl" class="control-label"></label>
+                        <input asp-for="Chest.ImageUrl" class="form-control" />
+                        <span asp-validation-for="Chest.ImageUrl" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <p>Items in chest</p>
+            <div class="table-responsive">
+                <table class="table" id="tblChosenItems">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Quality</th>
+                            <th>Img</th>
+                            <th>Price</th>
+                            <th>Weight</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+        <p>All items</p>
+        <div class="table-responsive">
+            <table class="table" id="tblAllItems">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Img</th>
+                        <th>Quality</th>
+                        <th>Price</th>
+                        <th>Weight</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.AllItems)
+                    {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td><img src=@item.ImageUrl style="width: 60px;height: 60px;" />
+                        <td>@item.Rarity.ToString()</td>
+                        <td>@item.Price.ToString()</td>
+                        <td><input type="number" id="weight" /></td>
+                        <td>
+                            <button class="btn btn-success pull-right" onclick="Add(this)"><strong>+</strong></button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_validateChestScripts");}
+}

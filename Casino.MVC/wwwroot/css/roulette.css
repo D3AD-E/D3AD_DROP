@@ -1,0 +1,60 @@
+﻿#items-roulette-window,
+#items-roulette-window-shadow,
+#items-roulette-window-line {
+    height: 172px;
+}
+
+#items-roulette-window {
+    width: 1000px;
+    border: 2px solid #999;
+    border-radius: 3px;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#items-roulette-window-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    box-shadow: inset 40px 0 50px -20px rgba(0, 0, 0, 0.7), inset -40px 0 50px -20px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+#items-roulette-window-line {
+    position: absolute;
+    top: 0;
+    left: 400px;
+    width: 3px;
+    background-color: gold;
+    z-index: 10;
+}
+
+#items-roulette-spinnable {
+    height: 172px;
+    width: 20000px;
+    overflow: hidden;
+}
+
+.items-roulette-item {
+    /*display: inline-block;*/
+    float: left;
+    margin-right: 3px;
+}
+
+.item-image-block {
+    width: 256px;
+    height: auto;
+    background: linear-gradient(to bottom, #e1e1e1 0%, #a9b1b4 100%);
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-button {
+    margin-bottom: 5px
+}

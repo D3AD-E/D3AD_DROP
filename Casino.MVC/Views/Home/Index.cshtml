@@ -1,0 +1,42 @@
+﻿@model CasinoMVC.Models.IndexItemsModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container" style="margin-bottom: 30px;">
+    <div class="row">
+        <a class="btn btn-primary" role="button" asp-controller="Admin" asp-action="Index">DEV</a>
+    </div>
+</div>
+<div class="container" style="margin-bottom: 30px;margin-top: 30px;">
+    <div class="row">
+        @foreach (var item in Model.RecentItems)
+        {
+            <div class="col-md-1">
+                <img src=@item.ImageUrl style="width: 100%;" />
+            </div>
+        }
+    </div>
+</div>
+<div>
+    <div class="container">
+        <p style="text-align: center;font-size: 40px;">D3AD DROP</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-group">
+                    @foreach (var chest in Model.Chests)
+                    {
+                        <a class="card" asp-controller="OpenChest" asp-action="Index" asp-route-id=@chest.Id>
+                            <img class="card-img-top w-100 mh-100 d-block">
+                            <div class="card-body">
+                                <img src=@chest.ImageUrl style="width: 100%" />
+                                <h4 class="card-title">@chest.Name</h4>
+                                <div class="btn btn-primary" asp-controller="OpenChest" type="button">@chest.Price.ToString() $</div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

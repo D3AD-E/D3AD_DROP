@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using CasinoMVC.Core;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model CasinoMVC.Models.OpenChestModel
+@{
+    ViewData["Title"] = "Open chest";
+}
+<section class="clean-block clean-form">
+    <div class="container">
+        <div class="block-heading" style="height: auto;">
+            @if (Model.WinningItem != null && Model.RouletteItems.Count > 0)
+            {
+                <div id="item-winning" style="display:none">
+                    @Html.HiddenFor(x => x.WinningIndex)
+                    <div class="center" style="width: 256px; height: auto;">
+                        <img src="@Model.WinningItem.ImageUrl" class="img-fluid" />
+                    </div>
+                    <h2 class="text-info" style="margin-bottom: 10px; margin-top: 20px;">@Model.WinningItem.Name</h2>
+                    <a class="btn btn-primary" asp-action="Open" asp-route-id="@Model.Chest.Id">Try again</a>
+                    <a class="btn btn-primary" asp-action="Sell" asp-controller="User" asp-route-id="@Model.WinningItem.Id" asp-route-previouslink="/OpenChest/Index/@Model.Chest.Id">Sell for @Model.WinningItem.Price $</a>
+                </div>
+                <div class="items-roulette-window" id="items-roulette-window" style="display:block">
+                    <div id="items-roulette-window-line"></div>
+                    <div id="items-roulette-spinnable">
+                        @foreach (var item in Model.RouletteItems)
+                        {
+                            <div class="item items-roulette-item" id="items-roulette-item">
+                                <div class="item-image-block">
+                                    <img src="@item.ImageUrl" alt="@item.Name" class="img-fluid" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="center" style="width: 256px; height: auto;">
+                    <img src="@Model.Chest.ImageUrl" class="img-fluid" />
+                </div>
+                <h2 class="text-info" style="margin-bottom: 10px;margin-top: 20px;">@Model.Chest.Name</h2>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <a class="btn btn-lg btn-primary" asp-action="Open" asp-route-id="@Model.Chest.Id">@Model.Chest.Price $</a>
+                }
+                else
+                {
+                    <a class="btn btn-lg btn-primary" asp-controller="User" asp-action="SignIn">Sign in to open chests!</a>
+                }
+
+            }
+        </div>
+    </div>
+    <div class="container" style="margin-top: 20px;">
+        <div class="row row-cols-1 row-cols-md-6 gx-5 gy-2">
+            @foreach (var item in Model.Chest.Items)
+            {
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="@item.ImageUrl">
+                        <div class="card-body">
+                            <h4 class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-size : 1rem;">@item.Name</h4>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    @{
+        if (Model.RouletteItems.Count > 0)
+            await Html.RenderPartialAsync("_validateOpenChestScripts");
+    }
+}

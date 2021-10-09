@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using CasinoMVC.Core;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model List<DotaItemModel>
+@{ 
+    var user = await UserManager.GetUserAsync(User);
+} 
+<section class="clean-block clean-form">
+    <div class="container">
+        <div class="block-heading" style="height: 300px; margin-bottom: 66px">
+            <h2 class="text-info" style="margin-bottom: 10px;margin-top: 20px;">@user.UserName</h2>
+            <p>@user.Balance $</p>
+            <p>You own @Model.Count items!</p>
+        </div>
+    </div>
+    <div>
+        <a class="btn btn-danger" asp-action="SellAll" asp-route-previouslink="/User/Current">Sell all</a>
+    </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-6 gx-5 gy-2">
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="@item.ImageUrl">
+                        <div class="card-body">
+                            <h4 class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-size : 1rem;">@item.Name</h4>
+                            <a class="btn btn-danger" asp-action="Sell" asp-route-previouslink="/User/Current" asp-route-id="@item.Id">Sell</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

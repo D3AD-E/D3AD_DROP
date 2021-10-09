@@ -1,0 +1,25 @@
+﻿<script type="text/javascript">
+    function Roll() {
+        var rouletteSpinnable = $("#items-roulette-spinnable");
+        rouletteSpinnable.css("margin-left", "0");
+        var winningIndex = parseInt($("#WinningIndex").val());
+        winningIndex--;
+        var randomMargin = ((256+3) * winningIndex) + Math.floor(Math.random() * 250 - 122);
+        rouletteSpinnable.animate({
+            'marginLeft': "-=" + randomMargin + "px"
+        }, {
+            duration: 5000,
+            complete: function () {
+                var roulette = $("#items-roulette-window");
+                console.log(roulette);
+                roulette.css("display", "none")
+                var winningItem = $("#item-winning");
+                winningItem.css("display", "block")
+            }
+        });
+    };
+
+    $(document).ready(function () {
+        Roll();
+    });
+</script>
