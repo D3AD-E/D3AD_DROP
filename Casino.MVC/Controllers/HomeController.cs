@@ -25,11 +25,17 @@ namespace CasinoMVC.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
+            var dBitems = _context.RecentPlayerItems.OrderByDescending(x => x.Time).Take(13);
+            var items = new List<DotaItemModel>();
+            foreach (var record in dBitems)
+            {
+                items.Add(await _context.DotaItems.FindAsync(record.ItemId));
+            }
             var toret = new IndexItemsModel
             {
-                Chests = _context.Chests.ToList()
+                Chests = _context.Chests.ToList(),
+                RecentItems = items
             };
-            //var dotaItems = items.Cast<DotaItemModel>().ToList();
             return View(toret);
         }
 

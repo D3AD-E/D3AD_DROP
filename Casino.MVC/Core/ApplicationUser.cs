@@ -13,6 +13,8 @@ namespace CasinoMVC.Core
 
         public float Balance { get; set; }
 
+        public int OpenedChestAmount { get; set; }
+
         public ApplicationUser() :base()
         {
             OwnedItemIds = new();

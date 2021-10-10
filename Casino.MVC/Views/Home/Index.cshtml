@@ -1,4 +1,5 @@
 ﻿@model CasinoMVC.Models.IndexItemsModel
+@using CasinoMVC.Core;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -8,19 +9,24 @@
         <a class="btn btn-primary" role="button" asp-controller="Admin" asp-action="Index">DEV</a>
     </div>
 </div>
-<div class="container" style="margin-bottom: 30px;margin-top: 30px;">
-    <div class="row">
-        @foreach (var item in Model.RecentItems)
-        {
-            <div class="col-md-1">
-                <img src=@item.ImageUrl style="width: 100%;" />
+<div id="items-recent">
+    @foreach (var item in Model.RecentItems)
+    {
+        <div class="item items-recent-item">
+            <div class="item-wrapper-gradient" style="--gradient:@item.Rarity.ToGradient()">
+                <img class="card-img-top img-fluid" src="@item.ImageUrl">
             </div>
-        }
-    </div>
+            <div class="item-footer">
+                <div class="item-footer-line" style="--color:@item.Rarity.ToRgb()"></div>
+            </div>
+        </div>
+    }
 </div>
 <div>
     <div class="container">
-        <p style="text-align: center;font-size: 40px;">D3AD DROP</p>
+        <div>
+            <h2 style="text-align:center">All chests</h2>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="card-group">

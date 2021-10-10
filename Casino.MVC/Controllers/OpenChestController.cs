@@ -56,7 +56,15 @@ namespace CasinoMVC.Controllers
 
             user.OwnedItemIds ??= new();
             user.OwnedItemIds.Add(model.WinningItem.Id);
+            user.OpenedChestAmount++;
             _context.Users.Update(user);
+            var recentEntry = new RecentPlayerItemDb
+            {
+                User = user,
+                ItemId = model.WinningItem.Id,
+                Time = DateTime.Now
+            };
+            await _context.RecentPlayerItems.AddAsync(recentEntry);
             await _context.SaveChangesAsync();
 
             return View("Index", model);
