@@ -6,7 +6,7 @@
 @{
     ViewData["Title"] = "Open chest";
 }
-<section class="clean-block clean-form">
+<section class="clean-block">
     <div class="container">
         <div class="block-heading" style="height: auto;">
             @if (Model.WinningItem != null && Model.RouletteItems.Count > 0)
@@ -33,35 +33,41 @@
                         }
                     </div>
                 </div>
+                <a class="btn btn-lg btn-primary">Opening...</a>
             }
             else
             {
                 <div class="center" style="width: 256px; height: auto;">
                     <img src="@Model.Chest.ImageUrl" class="img-fluid" />
                 </div>
-                <h2 class="text-info" style="margin-bottom: 10px;margin-top: 20px;">@Model.Chest.Name</h2>
+                <h2 class="text chest-label">@Model.Chest.Name</h2>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <a class="btn btn-lg btn-primary" asp-action="Open" asp-route-id="@Model.Chest.Id">@Model.Chest.Price $</a>
+                    <a class="btn btn-lg btn-danger" asp-action="Open" asp-route-id="@Model.Chest.Id">@Model.Chest.Price $</a>
                 }
                 else
                 {
-                    <a class="btn btn-lg btn-primary" asp-controller="User" asp-action="SignIn">Sign in to open chests!</a>
+                    <a class="btn btn-lg btn-warning" asp-controller="User" asp-action="SignIn">Sign in to open chests!</a>
                 }
 
             }
         </div>
     </div>
     <div class="container" style="margin-top: 20px;">
-        <div class="row row-cols-1 row-cols-md-6 gx-5 gy-2">
+        <div class="row row-cols-1 row-cols-md-6 gx-3 gy-2">
             @foreach (var item in Model.Chest.Items)
             {
                 <div class="col">
-                    <div class="card">
-                        <img class="card-img-top img-fluid" src="@item.ImageUrl">
-                        <div class="card-body">
-                            <h4 class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-size : 1rem;">@item.Name</h4>
+                    <div class="card bg-dark">
+                        <div class="item-wrapper-gradient" style="--gradient:@item.Rarity.ToGradient()">
+                            <img class="card-img-top img-fluid" src="@item.ImageUrl">
                         </div>
+                        <div class="item-footer">
+                            <div class="card-body">
+                                <div class="item-footer-line" style="--color:@item.Rarity.ToRgb()"></div>
+                                <h5 class="item-footer-text card-text">@item.Name</h5>
+                            </div>
+                         </div>
                     </div>
                 </div>
             }

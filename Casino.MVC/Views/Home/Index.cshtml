@@ -26,12 +26,12 @@
                 <div class="card-group">
                     @foreach (var chest in Model.Chests)
                     {
-                        <a class="card" asp-controller="OpenChest" asp-action="Index" asp-route-id=@chest.Id>
-                            <img class="card-img-top w-100 mh-100 d-block">
+                        <a class="card chest-card text-center" asp-controller="OpenChest" asp-action="Index" asp-route-id=@chest.Id>
+                            <img class="card-img-top d-block chest-card-image">
                             <div class="card-body">
                                 <img src=@chest.ImageUrl style="width: 100%" />
                                 <h4 class="card-title">@chest.Name</h4>
-                                <div class="btn btn-primary" asp-controller="OpenChest" type="button">@chest.Price.ToString() $</div>
+                                <div class="btn btn-light btn-sm chest-card-button" asp-controller="OpenChest" type="button">@chest.Price.ToString() $</div>
                             </div>
                         </a>
                     }

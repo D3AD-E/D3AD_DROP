@@ -29,7 +29,8 @@ namespace CasinoMVC.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var dbChest = await _context.Chests.FindAsync(id);
-            var chest = new ChestModel(dbChest, _context);
+            var chest = new ChestModel(dbChest);
+            await chest.Initialize(_context.DotaItems);
             var model = new OpenChestModel { Chest = chest };
 
             return View(model);
@@ -44,7 +45,8 @@ namespace CasinoMVC.Controllers
 
             if (user.Balance <= dbChest.Price)
             {
-                var chest = new ChestModel(dbChest, _context);
+                var chest = new ChestModel(dbChest);
+                await chest.Initialize(_context.DotaItems);
                 return View("Index", new OpenChestModel { Chest = chest });
             }
 
@@ -62,7 +64,8 @@ namespace CasinoMVC.Controllers
 
         private async Task<OpenChestModel> GetWinningModelAsync(ChestDbItem dbChest)
         {
-            var chest = new ChestModel(dbChest, _context);
+            var chest = new ChestModel(dbChest);
+            await chest.Initialize(_context.DotaItems);
             var model = new OpenChestModel { Chest = chest };
 
             var itemRandom = new Randomizer<int>(chest.ItemIds);

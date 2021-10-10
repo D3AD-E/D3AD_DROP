@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CasinoMVC.DAL
 {
-    public class DotaItemsDataTable //DO LATER
+    public class DotaItemsDataTable
     {
     }
 }

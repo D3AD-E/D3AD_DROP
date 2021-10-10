@@ -1,21 +1,19 @@
 ﻿@{
     ViewData["Title"] = "AdminPanel";
 }
-<section class="container">
-    <div>
-        <p>Quick access</p>
-        <div class="admin-button">
-            <a class="btn btn-primary" role="button" asp-controller="ChestsDb" asp-action="Create">Add chest</a>
-        </div>
-        <div class="admin-button">
-            <a class="btn btn-primary" role="button"  asp-action="Scrape">Scrape steam for items</a>
-        </div>
-        <p>Manage DB</p>
-        <div class="admin-button">
-            <a class="btn btn-primary" role="button" asp-controller="UsersDb" asp-action="Index">Manage users</a>
-        </div>
-        <div class="admin-button">
-            <a class="btn btn-primary" role="button" asp-controller="ChestsDb" asp-action="Index">Manage chests</a>
-        </div>
+<section class="container clean-block">
+    <p>Quick access</p>
+    <div class="admin-button">
+        <a class="btn btn-primary" role="button" asp-controller="ChestsDb" asp-action="Create">Add chest</a>
+    </div>
+    <div class="admin-button">
+        <a class="btn btn-primary" role="button" asp-action="Scrape">Scrape steam for items</a>
+    </div>
+    <p>Manage DB</p>
+    <div class="admin-button">
+        <a class="btn btn-primary" role="button" asp-controller="UsersDb" asp-action="Index">Manage users</a>
+    </div>
+    <div class="admin-button">
+        <a class="btn btn-primary" role="button" asp-controller="ChestsDb" asp-action="Index">Manage chests</a>
     </div>
 </section>

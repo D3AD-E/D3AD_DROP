@@ -38,5 +38,6 @@ namespace CasinoMVC.Models
                 property.SetValue(this, property.GetValue(other, null), null);
             }
         }
+        
     }
 }

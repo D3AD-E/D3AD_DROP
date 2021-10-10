@@ -25,12 +25,9 @@ namespace CasinoMVC.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            //Crawler crawler = new Crawler();
-            //await crawler.PopulateDatabase(_context, 3, 6);
-            
             var toret = new IndexItemsModel
             {
-                Chests = _context.Chests.Select(x => new ChestModel(x, _context)).ToList()
+                Chests = _context.Chests.ToList()
             };
             //var dotaItems = items.Cast<DotaItemModel>().ToList();
             return View(toret);

@@ -187,3 +187,108 @@
         transform: rotate(360deg);
     }
 }
+
+
+.item-wrapper-gradient::after {
+    background: rgb(2,0,36);
+    background: var(--gradient);
+    height: 35px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    display: inline-block;
+}
+.item-wrapper-gradient {
+    position: relative;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    margin-bottom: 1px;
+}
+.item-footer {
+    position: relative;
+    width: 100%;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+}
+
+.item-footer-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: var(--color);
+    z-index: 10;
+}
+
+.item-footer-text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1rem;
+    text-align: center;
+}
+body {
+    background-color: rgba(17,22,34,255) !important;
+    color: white !important;
+}
+.bg-primary {
+    background-color: rgba(17,22,34,255) !important;
+}
+
+.chest-card {
+    background-color: transparent !important;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+    transition: all .3s ease-in-out;
+    color: white !important;
+}
+    .chest-card:hover {
+        box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+        transform: translate3d(0px, -1px, 0px);
+        color: crimson !important;
+    }
+
+        .chest-card:hover .chest-card-button {
+            color: crimson !important;
+        }
+
+.chest-card-image{
+    width: 100px;
+    max-height: 100px;
+    margin-bottom: 5px;
+}
+
+.chest-label {
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+th {
+    color: white;
+}
+
+tr {
+    color: white;
+} 

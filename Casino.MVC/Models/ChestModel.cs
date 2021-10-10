@@ -12,12 +12,17 @@ namespace CasinoMVC.Models
     public class ChestModel : ChestDbItem
     {
         public List<DotaItemModel> Items { get; set; }
-        public ChestModel(ChestDbItem other, ApplicationDbContext context) : base(other)
+
+        public ChestModel(ChestDbItem other) : base(other)
         {
             Items = new();
+        }
+
+        public async Task Initialize(DbSet<DotaItemModel> dotaItems)
+        {
             foreach (var itemId in ItemIds)
             {
-                var item = context.DotaItems.SingleOrDefault(x => x.Id == itemId.Key);  //FIX
+                var item = await dotaItems.SingleOrDefaultAsync(x => x.Id == itemId.Key);
                 Items.Add(item);
             }
         }
