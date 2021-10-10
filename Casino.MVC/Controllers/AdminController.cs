@@ -33,7 +33,7 @@ namespace CasinoMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> ScrapeAsync(AdminScraperModel input)
         {
-            var crawler = new Crawler();
+            var crawler = new ItemScraper();
             var result = await crawler.PopulateDatabaseAsync(_context, input.PageAmount, input.StartingPageIndex, input.Rarity);
 
             return View("ScrapeResult", result);

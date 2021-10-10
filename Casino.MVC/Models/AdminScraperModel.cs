@@ -8,7 +8,12 @@ namespace CasinoMVC.Models
 {
     public class AdminScraperModel
     {
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
         public int StartingPageIndex { get; set; }
+
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter a value bigger than {0}")]
         public int PageAmount { get; set; }
 
         [EnumDataType(typeof(DotaItemModel.ItemRarity))]
@@ -17,7 +22,6 @@ namespace CasinoMVC.Models
         public AdminScraperModel()
         {
             Rarity = DotaItemModel.ItemRarity.NONE;
-            StartingPageIndex = 1;
         }
     }
 }

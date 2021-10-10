@@ -1,5 +1,8 @@
 ﻿@model CasinoMVC.Models.AdminScraperModel
 <p>Dota items scraper</p>
+<div class="loading" style="display:none">
+    Loading;
+</div>
 <form asp-action="Scrape">
     <div class="form-group">
         <label asp-for="StartingPageIndex" class="control-label"></label>
@@ -22,3 +25,8 @@
         <input type="submit" value="Scrape" class="btn btn-primary" />
     </div>
 </form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ScraperScripts");}
+}

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CasinoMVC.Core
 {
-    public class Crawler
+    public class ItemScraper
     {
         private const string SteamSearchLink = "https://steamcommunity.com/market/search?appid={0}#p{1}_popular_desc";
         private const string SteamSearchLinkWithDotaCategory = "https://steamcommunity.com/market/search?q=&category_570_Hero%5B%5D=any&category_570_Slot%5B%5D=any&category_570_Type%5B%5D=any&category_570_Rarity%5B%5D=tag_Rarity_{0}&appid=570#p{1}_popular_desc";
@@ -44,7 +44,7 @@ namespace CasinoMVC.Core
             throw new InvalidOperationException("Could not load html from given source.");
         }
 
-        public Crawler()
+        public ItemScraper()
         {
             Web = new();
         }
@@ -62,7 +62,7 @@ namespace CasinoMVC.Core
                     await context.SaveChangesAsync();
                     toRet.AddedItemsCount = addedItems.Count;
                     toRet.Log = logBuilder.ToString();
-                    toRet.ErrorMessage = $"GET_ITEMS_FAIL Failed to get items at page {i}, but got {addedItems.Count()} items";
+                    toRet.ErrorMessage = $"GET_ITEMS_FAIL Failed to get items at page {i}";
                     return toRet;
                 }
 
@@ -73,22 +73,22 @@ namespace CasinoMVC.Core
                         await context.SaveChangesAsync();
                         toRet.AddedItemsCount = addedItems.Count;
                         toRet.Log = logBuilder.ToString();
-                        toRet.ErrorMessage = $"RARITY_FAIL Failed to get item at page {i}, but got {addedItems.Count()} items";
+                        toRet.ErrorMessage = $"RARITY_FAIL Failed to get item at page {i}";
                         return toRet;
                     }
                     
                     var dbitem = await context.DotaItems.SingleOrDefaultAsync(p => p.Name == item.Name);
                     if (addedItems.Any(x => x.Name.Equals(item.Name)) || item.Price == 0f || dbitem !=null)
                     {
-                        logBuilder.Append($"<br>Rejected {item.Name} at page {i}");
+                        logBuilder.Append($"Rejected {item.Name} at page {i}<br> ");
                         continue;
                     }
                     context.DotaItems.Add(item);
                     addedItems.Add(item);
-                    logBuilder.Append($"<br>Added {item.Name} at page {i}");
+                    logBuilder.Append($"Added {item.Name} at page {i}<br> ");
                 }
             }
-            logBuilder.Append($"<br>Successfully added {addedItems.Count()} items");
+            logBuilder.Append($"Successfully added {addedItems.Count()} items");
             await context.SaveChangesAsync();
             toRet.AddedItemsCount = addedItems.Count;
             toRet.Log = logBuilder.ToString();
