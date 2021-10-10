@@ -1,12 +1,12 @@
 ﻿#items-roulette-window,
 #items-roulette-window-shadow,
 #items-roulette-window-line {
-    height: 172px;
+    height: 187px;
 }
 
 #items-roulette-window {
     width: 1000px;
-    border: 2px solid #999;
+    border: 2px solid #2E2C2C;
     border-radius: 3px;
     position: relative;
     margin: 0 auto;
@@ -28,7 +28,7 @@
     top: 0;
     left: 500px;
     width: 3px;
-    background-color: gold;
+    background-color: rgba(200,15,15);
     z-index: 10;
 }
 
@@ -36,10 +36,11 @@
     height: 172px;
     width: 20000px;
     overflow: hidden;
+    margin-bottom:2px;
 }
 
 .items-roulette-item {
-    /*display: inline-block;*/
+    display: inline-block;
     float: left;
     margin-right: 3px;
 }
@@ -47,8 +48,15 @@
 .item-image-block {
     width: 256px;
     height: auto;
-    background: linear-gradient(to bottom, #e1e1e1 0%, #a9b1b4 100%);
 }
+.items-roulette-border-line {
+    background: linear-gradient(90deg, transparent, rgba(200,15,15,1) 51%, transparent);
+    height: 4px;
+    width: auto;
+}
+
+
+
 .center {
     display: block;
     margin-left: auto;
@@ -69,7 +77,6 @@
     z-index: 1031;
     height: 2em;
     width: 2em;
-    overflow: show;
     margin: auto;
     top: 0;
     left: 0;
@@ -107,7 +114,6 @@
             margin-top: -0.5em;
             -webkit-animation: spinner 1500ms infinite linear;
             -moz-animation: spinner 1500ms infinite linear;
-            -ms-animation: spinner 1500ms infinite linear;
             -o-animation: spinner 1500ms infinite linear;
             animation: spinner 1500ms infinite linear;
             border-radius: 0.5em;
@@ -267,6 +273,10 @@ body {
 .chest-label {
     margin-bottom: 10px;
     margin-top: 20px;
+}
+
+.btn-generic:hover {
+    color: crimson !important;
 }
 
 a:link {

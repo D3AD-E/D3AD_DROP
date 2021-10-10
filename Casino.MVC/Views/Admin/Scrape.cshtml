@@ -1,32 +1,34 @@
 ﻿@model CasinoMVC.Models.AdminScraperModel
-<p>Dota items scraper</p>
-<div class="loading" style="display:none">
-    Loading;
-</div>
-<form asp-action="Scrape">
-    <div class="form-group">
-        <label asp-for="StartingPageIndex" class="control-label"></label>
-        <input asp-for="StartingPageIndex" class="form-control" />
-        <span asp-validation-for="StartingPageIndex" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="PageAmount" class="control-label"></label>
-        <input asp-for="PageAmount" class="form-control" />
-        <span asp-validation-for="PageAmount" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Rarity" class="control-label"></label>
-        <select asp-for="Rarity" asp-items="Html.GetEnumSelectList<DotaItemModel.ItemRarity>()">
-            <option selected="selected" value="">Choose rarity</option>
-        </select>
-        <span asp-validation-for="Rarity" class="text-danger" />
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Scrape" class="btn btn-primary" />
-    </div>
-</form>
+<section class="container clean-block">
 
+    <p>Dota items scraper</p>
+    <div class="loading" style="display:none">
+        Loading;
+    </div>
+    <form asp-action="Scrape">
+        <div class="form-group">
+            <label asp-for="StartingPageIndex" class="control-label"></label>
+            <input asp-for="StartingPageIndex" class="form-control" />
+            <span asp-validation-for="StartingPageIndex" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PageAmount" class="control-label"></label>
+            <input asp-for="PageAmount" class="form-control" />
+            <span asp-validation-for="PageAmount" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Rarity" class="control-label"></label>
+            <select asp-for="Rarity" asp-items="Html.GetEnumSelectList<DotaItemModel.ItemRarity>()">
+                <option selected="selected" value="">Choose rarity</option>
+            </select>
+            <span asp-validation-for="Rarity" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Scrape" class="btn btn-primary" />
+        </div>
+    </form>
 
+</section>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ScraperScripts");}
 }

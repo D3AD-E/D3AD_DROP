@@ -1,11 +1,13 @@
 ﻿@model CasinoMVC.Core.ItemScraper.CrawlDiagnostics
-<h3>Crawl results:</h3>
-<p>Got @Model.AddedItemsCount items</p>
-@if(!string.IsNullOrEmpty(Model.ErrorMessage))
-{
-<h3>Failed with error</h3>
-<p class="text-danger">@Model.ErrorMessage</p>
-}
-<h3>Log</h3>
-<p>@Html.Raw(@Model.Log)</p>
-<a class="btn btn-primary" asp-action="Index">Back</a>
+<section>
+    <h3>Crawl results:</h3>
+    <p>Got @Model.AddedItemsCount items</p>
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <h3>Failed with error</h3>
+        <p class="text-danger">@Model.ErrorMessage</p>
+    }
+    <h3>Log</h3>
+    <p>@Html.Raw(@Model.Log)</p>
+    <a class="btn btn-primary" asp-action="Index">Back</a>
+</section>

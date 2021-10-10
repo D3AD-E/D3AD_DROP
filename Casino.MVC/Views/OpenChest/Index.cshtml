@@ -17,23 +17,27 @@
                         <img src="@Model.WinningItem.ImageUrl" class="img-fluid" />
                     </div>
                     <h2 class="text-info" style="margin-bottom: 10px; margin-top: 20px;">@Model.WinningItem.Name</h2>
-                    <a class="btn btn-primary" asp-action="Open" asp-route-id="@Model.Chest.Id">Try again</a>
-                    <a class="btn btn-primary" asp-action="Sell" asp-controller="User" asp-route-id="@Model.WinningItem.Id" asp-route-previouslink="/OpenChest/Index/@Model.Chest.Id">Sell for @Model.WinningItem.Price $</a>
+                    <a class="btn btn-danger" asp-action="Open" asp-route-id="@Model.Chest.Id">Try again</a>
+                    <a class="btn btn-success" asp-action="Sell" asp-controller="User" asp-route-id="@Model.WinningItem.Id" asp-route-previouslink="/OpenChest/Index/@Model.Chest.Id">Sell for @Model.WinningItem.Price $</a>
                 </div>
                 <div class="items-roulette-window" id="items-roulette-window" style="display:block">
+                    <div class="items-roulette-border-line"></div>
                     <div id="items-roulette-window-line"></div>
                     <div id="items-roulette-spinnable">
                         @foreach (var item in Model.RouletteItems)
                         {
                             <div class="item items-roulette-item" id="items-roulette-item">
-                                <div class="item-image-block">
-                                    <img src="@item.ImageUrl" alt="@item.Name" class="img-fluid" />
+                                <div class="item-wrapper-gradient" style="--gradient:@item.Rarity.ToGradient()">
+                                    <img class="card-img-top img-fluid" src="@item.ImageUrl">
+                                </div>
+                                <div class="item-footer">
+                                    <div class="item-footer-line" style="--color:@item.Rarity.ToRgb()"></div>
                                 </div>
                             </div>
                         }
                     </div>
+                    <div class="items-roulette-border-line"></div>
                 </div>
-                <a class="btn btn-lg btn-primary">Opening...</a>
             }
             else
             {
@@ -67,7 +71,7 @@
                                 <div class="item-footer-line" style="--color:@item.Rarity.ToRgb()"></div>
                                 <h5 class="item-footer-text card-text">@item.Name</h5>
                             </div>
-                         </div>
+                        </div>
                     </div>
                 </div>
             }

@@ -33,15 +33,16 @@ namespace CasinoMVC.Controllers
             return View(toret);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Route("404")]
+        public IActionResult PageNotFound()
+        {
+            return View("404");
         }
     }
 }
