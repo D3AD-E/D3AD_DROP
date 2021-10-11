@@ -138,5 +138,13 @@ namespace CasinoMVC.Controllers
             }
             return View(items);
         }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

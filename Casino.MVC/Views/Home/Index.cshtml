@@ -9,18 +9,23 @@
         <a class="btn btn-primary" role="button" asp-controller="Admin" asp-action="Index">DEV</a>
     </div>
 </div>
-<div id="items-recent">
-    @foreach (var item in Model.RecentItems)
-    {
-        <div class="item items-recent-item">
-            <div class="item-wrapper-gradient" style="--gradient:@item.Rarity.ToGradient()">
-                <img class="card-img-top img-fluid" src="@item.ImageUrl">
+<div class="items-recent-wrapper" id="items-recent-wrapper">
+    <div class="items-recent">
+        @foreach (var item in Model.RecentItems)
+        {
+            <div class="item items-recent-item">
+                <div>
+                    <div class="item-wrapper-gradient" style="--gradient:@item.Rarity.ToGradient()">
+                        <img class="card-img-top img-fluid" src="@item.ImageUrl">
+                        <div class="item-recent-owner">@item.OwnerName</div>
+                    </div>
+                    <div class="item-footer">
+                        <div class="item-footer-line" style="--color:@item.Rarity.ToRgb()"></div>
+                    </div>
+                </div>
             </div>
-            <div class="item-footer">
-                <div class="item-footer-line" style="--color:@item.Rarity.ToRgb()"></div>
-            </div>
-        </div>
-    }
+        }
+    </div>
 </div>
 <div>
     <div class="container">

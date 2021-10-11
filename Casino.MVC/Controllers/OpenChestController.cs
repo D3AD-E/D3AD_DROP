@@ -60,7 +60,7 @@ namespace CasinoMVC.Controllers
             _context.Users.Update(user);
             var recentEntry = new RecentPlayerItemDb
             {
-                User = user,
+                UserId = user.Id,
                 ItemId = model.WinningItem.Id,
                 Time = DateTime.Now
             };

@@ -27,7 +27,7 @@
                         @foreach (var item in Model.RouletteItems)
                         {
                             <div class="item items-roulette-item" id="items-roulette-item">
-                                <div class="item-wrapper-gradient" style="--gradient:@item.Rarity.ToGradient()">
+                                <div class="item-wrapper-gradient" style="--gradient:@item.Rarity.ToGradient();">
                                     <img class="card-img-top img-fluid" src="@item.ImageUrl">
                                 </div>
                                 <div class="item-footer">

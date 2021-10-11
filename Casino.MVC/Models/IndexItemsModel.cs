@@ -8,15 +8,9 @@ namespace CasinoMVC.Models
 {
     public class IndexItemsModel
     {
-        public List<DotaItemModel> RecentItems { get; set; }
+        public List<DotaOwnerItemModel> RecentItems { get; set; }
         
         public List<ChestDbItem> Chests { get; set; }
-
-        public IndexItemsModel()
-        {
-            RecentItems = new();
-            Chests = new();
-        }
 
     }
 }

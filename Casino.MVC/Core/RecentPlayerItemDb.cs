@@ -10,7 +10,7 @@ namespace CasinoMVC.Core
         public int Id { get; set; }
         public int ItemId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public Guid UserId { get; set; }
 
         public DateTime Time { get; set; }
     }
