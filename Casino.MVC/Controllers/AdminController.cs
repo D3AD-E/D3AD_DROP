@@ -1,5 +1,4 @@
-﻿using Casino.Crawler;
-using CasinoMVC.Core;
+﻿using CasinoMVC.Core;
 using CasinoMVC.Data;
 using CasinoMVC.Models;
 using Microsoft.AspNetCore.Mvc;

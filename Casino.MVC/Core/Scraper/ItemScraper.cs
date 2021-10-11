@@ -1,5 +1,4 @@
-﻿using Casino.Crawler.Types;
-using CasinoMVC.Data;
+﻿using CasinoMVC.Data;
 using CasinoMVC.Models;
 using HtmlAgilityPack;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +25,12 @@ namespace CasinoMVC.Core
 
         public static readonly string[] BannedEndWords = { "Bundle", "Treasure" };
 
-        private const int DelayMs = 3100; 
+        private const int DelayMs = 3100;
+
+        public enum GameType
+        {
+            Dota2 = 570
+        }
 
         public class CrawlDiagnostics
         {

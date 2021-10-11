@@ -1,5 +1,4 @@
-﻿using Casino.Crawler;
-using CasinoMVC.Models;
+﻿using CasinoMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

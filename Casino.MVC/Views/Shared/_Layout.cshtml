@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/assets/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="/assets/css/vanilla-zoom.min.css">
-    <link rel="stylesheet" href="~/css/roulette.css">
+    <link rel="stylesheet" href="~/css/site.css">
 </head>
 <body>
     <header>
@@ -28,7 +28,7 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item"><a class="nav-link" asp-controller="User" asp-action="Current">@User.Identity.Name</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">@UserManager.GetUserAsync(User).Result.Balance $</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">@String.Format("{0:0.00}", UserManager.GetUserAsync(User).Result.Balance) $</a></li>
                         }
                         else
                         {
